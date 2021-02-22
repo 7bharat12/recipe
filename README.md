@@ -2,4 +2,4 @@
 
 Name: Bharat Chandra
 
-You’re supposed to use only JavaScript.
+Question said to do it using JavaScript, so, tried to do using DOM Manipulation using Javascript
