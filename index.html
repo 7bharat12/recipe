@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RECIPE API</title>
+  </head>
+  <body>
+    <script>
+      var box1 = document.createElement("div");
+      box1.setAttribute("id", "outer");
+      box1.style.width = 98 + "%";
+      box1.style.padding = 10 + "px";
+      box1.style.borderColor = "black";
+      box1.style.borderStyle = "solid";
+      box1.style.borderWidth = "5px";
+      box1.style.textAlign = "center";
+
+      var x = document.createElement("IMG");
+      x.setAttribute("src", "recipe_logo.jpg");
+      x.setAttribute("width", "250");
+      x.setAttribute("height", "150");
+
+      var input1 = document.createElement("INPUT");
+      input1.setAttribute("type", "text");
+      input1.style.borderRadius = "10px";
+      input1.style.width = 30 + "%";
+      input1.style.padding = 10 + "px";
+      input1.style.borderColor = "black";
+      input1.style.borderStyle = "solid";
+      input1.style.borderWidth = "2px";
+      input1.setAttribute("placeholder", "Type an ingredient!");
+
+      var input2 = document.createElement("INPUT");
+      input2.setAttribute("type", "text");
+      input2.style.borderRadius = "10px";
+      input2.style.width = 30 + "%";
+      input2.style.padding = 10 + "px";
+      input2.style.borderColor = "black";
+      input2.style.borderStyle = "solid";
+      input2.style.borderWidth = "2px";
+      input2.setAttribute("placeholder", "Type the start index!");
+
+      var input3 = document.createElement("INPUT");
+      input3.setAttribute("type", "text");
+      input3.style.borderRadius = "10px";
+      input3.style.width = 30 + "%";
+      input3.style.padding = 10 + "px";
+      input3.style.borderColor = "black";
+      input3.style.borderStyle = "solid";
+      input3.style.borderWidth = "2px";
+      input3.setAttribute("placeholder", "Type the end index!");
+      
+      var btn = document.createElement("BUTTON");
+      btn.setAttribute("id", "butt");
+      btn.type = "button";
+      //btn.setAttribute("onclick", "getRecipe('" + ingredient + "')");
+      btn.innerHTML = "Search recipe!";
+
+      box1.appendChild(x);
+      box1.appendChild(input1);
+      box1.appendChild(input2);
+      box1.appendChild(input3);
+      box1.appendChild(btn);
+
+      async function getRecipe(ingredient) {
+        try {
+          console.log(ingredient);
+          var rec = await fetch(
+            "https://api.edamam.com/search?q=" +
+              ingredient +
+              "&app_id=62c2c60c&app_key=0d7128ad7c061cc46be19effd65998eb"
+          );
+          var inf = await rec.json();
+          alert(
+            "Label: " +
+              inf.hits.recipe.label +
+              "\n" +
+              "Image: " +
+              inf.hits.recipe.image
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      document.body.appendChild(box1);
+    </script>
+  </body>
+</html>
